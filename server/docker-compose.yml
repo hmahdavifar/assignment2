@@ -1,0 +1,25 @@
+version: '3'
+services:
+  mongo:
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+    # networks:
+    #   - mynet
+  node:
+    image : nodeapp:v1
+    ports: 
+      - "3000:3000"
+    volumes:
+      - servervol:/servervol
+    # networks:
+    #   - mynet
+volumes:
+  servervol:
+    external: true
+networks:
+  default:
+    name: mynet
+    external: true
